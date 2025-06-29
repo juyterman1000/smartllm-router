@@ -26,8 +26,12 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# ===== SECURITY - NEVER COMMIT THESE =====
 # Environment variables and secrets
 .env
+.env.local
+.env.production
+.env.staging
 *.key
 *.pem
 secrets.json
@@ -36,6 +40,12 @@ config.json
 # API Keys (IMPORTANT: Never commit API keys!)
 *api_key*
 *API_KEY*
+*secret*
+*SECRET*
+*token*
+*TOKEN*
+sk-*
+sk-ant-*
 
 # PyInstaller
 *.manifest
@@ -80,8 +90,41 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
-# Project specific
-*.log
-*.db
+# ===== PROJECT SPECIFIC =====
+# Test outputs and results
+test_results/
+benchmark_results/
+performance_results/
+*.test.log
 benchmark_results.png
 benchmark_report.json
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Cache files
+.cache/
+*.cache
+
+# Log files
+*.log
+logs/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Streamlit
+.streamlit/
+
+# Docker
+docker-compose.override.yml
+
+# Deployment
+.vercel
+.netlify
+.railway
