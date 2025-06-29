@@ -466,8 +466,8 @@ response = router.chat.completions.create(
 
 | 📚 **Documentation** | 💬 **Community** | 🏢 **Enterprise** | 📱 **Social** |
 |:---:|:---:|:---:|:---:|
-| [📖 Setup Guide](SETUP.md) | [💬 Discussions](https://github.com/yourusername/smartllm-router/discussions) | [📧 Enterprise Support](mailto:enterprise@smartllm-router.com) | [🐦 Twitter](https://twitter.com/smartllmrouter) |
-| [🔧 API Reference](docs/API.md) | [🐛 Bug Reports](https://github.com/yourusername/smartllm-router/issues) | [📞 Priority Support](https://smartllm-router.com/support) | [💼 LinkedIn](https://linkedin.com/company/smartllm-router) |
+| [📖 Setup Guide](SETUP.md) | [💬 Discussions](https://github.com/juyterman1000/smartllm-router/discussions) | [📧 Contact](mailto:fastunner10090@gmail.com) | [🐦 Twitter](https://twitter.com/smartllmrouter) |
+| [🔧 API Reference](docs/API.md) | [🐛 Bug Reports](https://github.com/juyterman1000/smartllm-router/issues) | [📞 Enterprise Support](mailto:fastunner10090@gmail.com) | [💼 LinkedIn](https://linkedin.com/company/smartllm-router) |
 | [💡 Examples](examples/) | [🤝 Contributing](CONTRIBUTING.md) | [🔒 Security](docs/SECURITY.md) | [📺 YouTube](https://youtube.com/@smartllmrouter) |
 
 ---
@@ -476,10 +476,11 @@ response = router.chat.completions.create(
 
 We love contributions! SmartLLM Router is open source and community-driven.
 
-- 🐛 **Found a bug?** [Report it](https://github.com/yourusername/smartllm-router/issues/new?template=bug_report.md)
-- 💡 **Have an idea?** [Request a feature](https://github.com/yourusername/smartllm-router/issues/new?template=feature_request.md)
+- 🐛 **Found a bug?** [Report it](https://github.com/juyterman1000/smartllm-router/issues/new?template=bug_report.md)
+- 💡 **Have an idea?** [Request a feature](https://github.com/juyterman1000/smartllm-router/issues/new?template=feature_request.md)
 - 🔧 **Want to contribute?** [Read our guide](CONTRIBUTING.md)
-- 📝 **Improve docs?** [Edit on GitHub](https://github.com/yourusername/smartllm-router/edit/main/README.md)
+- 📝 **Improve docs?** [Edit on GitHub](https://github.com/juyterman1000/smartllm-router/edit/main/README.md)
+- 📧 **Need help?** [Email us](mailto:fastunner10090@gmail.com)
 
 ---
 
@@ -505,11 +506,11 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/smartllm-router?style=for-the-badge&logo=github)](https://github.com/yourusername/smartllm-router)
+[![GitHub stars](https://img.shields.io/github/stars/juyterman1000/smartllm-router?style=for-the-badge&logo=github)](https://github.com/juyterman1000/smartllm-router)
 [![PyPI downloads](https://img.shields.io/pypi/dm/smartllm-router?style=for-the-badge&logo=python)](https://pypi.org/project/smartllm-router/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/smartllmrouter?style=for-the-badge&logo=twitter)](https://twitter.com/smartllmrouter)
 
-**[📦 Install Now](https://pypi.org/project/smartllm-router/)** • **[📖 Read Docs](docs/)** • **[🎮 Try Demo](https://smartllm-demo.streamlit.app)** • **[💬 Join Community](https://github.com/yourusername/smartllm-router/discussions)**
+**[📦 Install Now](https://pypi.org/project/smartllm-router/)** • **[📖 Read Docs](docs/)** • **[🎮 Try Demo](https://smartllm-demo.streamlit.app)** • **[💬 Join Community](https://github.com/juyterman1000/smartllm-router/discussions)**
 
 ---
 

@@ -200,7 +200,7 @@ Top contributors are featured in our README and documentation.
 
 ### **Contributor Badges**
 - 🥇 **Gold**: 10+ merged PRs
-- 🥈 **Silver**: 5+ merged PRs  
+- 🥈 **Silver**: 5+ merged PRs
 - 🥉 **Bronze**: 1+ merged PR
 
 ### **Special Recognition**
@@ -238,8 +238,8 @@ We follow [Semantic Versioning](https://semver.org/):
 ## 🎉 Getting Help
 
 ### **Stuck? We're here to help!**
-- 💬 Ask in [Discussions](https://github.com/yourusername/smartllm-router/discussions)
-- 📧 Email us at [contributors@smartllm-router.com](mailto:contributors@smartllm-router.com)
+- 💬 Ask in [Discussions](https://github.com/juyterman1000/smartllm-router/discussions)
+- 📧 Email us at [fastunner10090@gmail.com](mailto:fastunner10090@gmail.com)
 - 📖 Check our [documentation](docs/)
 
 ### **Mentorship Program**
@@ -254,4 +254,4 @@ Every contribution, no matter how small, makes SmartLLM Router better for everyo
 
 ---
 
-**Ready to contribute? [Check out our good first issues](https://github.com/yourusername/smartllm-router/labels/good%20first%20issue) to get started!**
+**Ready to contribute? [Check out our good first issues](https://github.com/juyterman1000/smartllm-router/labels/good%20first%20issue) to get started!**

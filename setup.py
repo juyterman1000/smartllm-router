@@ -7,7 +7,7 @@ setup(
     name="smartllm-router",
     version="0.1.0",
     author="SmartLLM Router Team",
-    author_email="team@smartllm-router.com",
+    author_email="fastunner10090@gmail.com",
     description="🚀 Cut your LLM API costs by up to 80% with intelligent routing",
     long_description=long_description,
     long_description_content_type="text/markdown",

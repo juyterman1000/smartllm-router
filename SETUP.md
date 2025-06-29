@@ -223,8 +223,8 @@ if daily_cost > 50.0:
 ## 💬 Need Help?
 
 - **📖 Documentation**: [docs/](docs/)
-- **💬 Community**: [GitHub Discussions](https://github.com/yourusername/smartllm-router/discussions)
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yourusername/smartllm-router/issues)
-- **📧 Enterprise Support**: enterprise@smartllm-router.com
+- **💬 Community**: [GitHub Discussions](https://github.com/juyterman1000/smartllm-router/discussions)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/juyterman1000/smartllm-router/issues)
+- **📧 Contact & Support**: [fastunner10090@gmail.com](mailto:fastunner10090@gmail.com)
 
 **Happy cost optimizing! 💰🚀**
