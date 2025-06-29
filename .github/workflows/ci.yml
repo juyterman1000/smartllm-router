@@ -1,0 +1,276 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, "3.10", "3.11"]
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install -e ".[dev]"
+    
+    - name: Lint with flake8
+      run: |
+        flake8 smartllm_router --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 smartllm_router --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
+    - name: Format check with black
+      run: |
+        black --check smartllm_router tests
+    
+    - name: Import sorting check with isort
+      run: |
+        isort --check-only smartllm_router tests
+    
+    - name: Type checking with mypy
+      run: |
+        mypy smartllm_router --ignore-missing-imports
+    
+    - name: Test with pytest
+      run: |
+        pytest tests/ --cov=smartllm_router --cov-report=xml --cov-report=html
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety
+    
+    - name: Security check with bandit
+      run: |
+        bandit -r smartllm_router -f json -o bandit-report.json
+    
+    - name: Safety check
+      run: |
+        safety check --json --output safety-report.json
+    
+    - name: Upload security reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+
+  benchmark:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+    
+    - name: Run benchmarks
+      run: |
+        python -m smartllm_router.benchmark --suite simple_qa --strategy compare --output benchmark-results.json
+    
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v3
+      with:
+        name: benchmark-results
+        path: benchmark-results.json
+
+  build:
+    needs: [test, security]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    - name: Build package
+      run: |
+        python -m build
+    
+    - name: Check package
+      run: |
+        twine check dist/*
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist/
+
+  deploy-docs:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install -e ".[dashboard]"
+        pip install mkdocs mkdocs-material mkdocstrings[python]
+    
+    - name: Build documentation
+      run: |
+        mkdocs build
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./site
+
+  deploy-demo:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to Streamlit Cloud
+      run: |
+        echo "Demo deployment would happen here"
+        # In production, this would deploy to Streamlit Cloud or similar
+
+  publish:
+    needs: [test, security, build]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    - name: Build package
+      run: |
+        python -m build
+    
+    - name: Publish to PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        twine upload dist/*
+    
+    - name: Create GitHub Release Assets
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/*.whl
+          dist/*.tar.gz
+        generate_release_notes: true
+
+  performance-monitoring:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install pytest-benchmark
+    
+    - name: Run performance benchmarks
+      run: |
+        pytest tests/test_performance.py --benchmark-json=performance.json
+    
+    - name: Store benchmark result
+      uses: benchmark-action/github-action-benchmark@v1
+      with:
+        tool: 'pytest'
+        output-file-path: performance.json
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        auto-push: true
+
+  notify:
+    needs: [test, security, build]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+    - name: Notify on success
+      if: ${{ needs.test.result == 'success' && needs.security.result == 'success' && needs.build.result == 'success' }}
+      run: |
+        echo "✅ All checks passed! Ready for deployment."
+    
+    - name: Notify on failure
+      if: ${{ needs.test.result == 'failure' || needs.security.result == 'failure' || needs.build.result == 'failure' }}
+      run: |
+        echo "❌ Some checks failed. Please review the logs."
+        exit 1
