@@ -477,14 +477,9 @@ response = router.chat.completions.create(
 
 ## 🌟 **Why Developers Love SmartLLM Router**
 
-> *"SmartLLM Router paid for itself in the first week. The automatic fallbacks saved us during the OpenAI outage."*
-> **— CTO, TechFlow AI**
-
 > *"We reduced our LLM costs by 98% while actually improving response times. It's a no-brainer."*
 > **— Lead Engineer, ShopSmart Global**
 
-> *"The integration was seamless. Literally just changed one line of code and started saving money."*
-> **— Senior Developer, MedAssist Pro**
 
 ---
 
@@ -492,9 +487,9 @@ response = router.chat.completions.create(
 
 | 📚 **Documentation** | 💬 **Community** | 🏢 **Enterprise** | 📱 **Social** |
 |:---:|:---:|:---:|:---:|
-| [📖 Setup Guide](SETUP.md) | [💬 Discussions](https://github.com/juyterman1000/smartllm-router/discussions) | [📧 Contact](mailto:fastunner10090@gmail.com) | [🐦 Twitter](https://twitter.com/smartllmrouter) |
-| [🔧 API Reference](docs/API.md) | [🐛 Bug Reports](https://github.com/juyterman1000/smartllm-router/issues) | [📞 Enterprise Support](mailto:fastunner10090@gmail.com) | [💼 LinkedIn](https://linkedin.com/company/smartllm-router) |
-| [💡 Examples](examples/) | [🤝 Contributing](CONTRIBUTING.md) | [🔒 Security](docs/SECURITY.md) | [📺 YouTube](https://youtube.com/@smartllmrouter) |
+| [📖 Setup Guide](SETUP.md) | [💬 Discussions](https://github.com/juyterman1000/smartllm-router/discussions) | [📧 Contact](mailto:fastunner10090@gmail.com)  |
+| [🔧 API Reference](docs/API.md) | [🐛 Bug Reports](https://github.com/juyterman1000/smartllm-router/issues) | [📞 Enterprise Support](mailto:fastunner10090@gmail.com) |
+| [💡 Examples](examples/) | [🤝 Contributing](CONTRIBUTING.md) | [🔒 Security](docs/SECURITY.md) |
 
 ---
 
