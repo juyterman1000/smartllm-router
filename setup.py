@@ -42,21 +42,34 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "openai>=1.0.0",
-        "anthropic>=0.8.0",
-        "google-generativeai>=0.3.0",
-        "mistralai>=0.0.7",
         "tiktoken>=0.5.0",
-        "numpy>=1.24.0",
-        "aiohttp>=3.8.0",
+        "requests>=2.25.0",
         "pydantic>=2.0.0",
-        "fastapi>=0.104.0",
-        "uvicorn>=0.24.0",
-        "plotly>=5.17.0",
-        "pandas>=2.0.0",
-        "redis>=5.0.0",  # For distributed caching
-        "prometheus-client>=0.19.0",  # For metrics
+        "click>=8.1.0",
+        "rich>=13.0.0",
+        "pyyaml>=6.0",
     ],
     extras_require={
+        "anthropic": ["anthropic>=0.3.0"],
+        "google": ["google-generativeai>=0.1.0"],
+        "mistral": ["mistralai>=0.0.7"],
+        "dashboard": [
+            "streamlit>=1.28.0",
+            "plotly>=5.17.0",
+            "pandas>=2.0.0",
+            "matplotlib>=3.7.0",
+            "seaborn>=0.12.0",
+        ],
+        "api": [
+            "fastapi>=0.104.0",
+            "uvicorn>=0.24.0",
+        ],
+        "cache": [
+            "redis>=5.0.0",
+        ],
+        "monitoring": [
+            "prometheus-client>=0.19.0",
+        ],
         "dev": [
             "pytest>=7.4.0",
             "pytest-asyncio>=0.21.0",
@@ -68,10 +81,19 @@ setup(
             "bandit>=1.7.0",
             "safety>=2.3.0",
         ],
-        "dashboard": [
+        "all": [
+            "anthropic>=0.3.0",
+            "google-generativeai>=0.1.0",
+            "mistralai>=0.0.7",
             "streamlit>=1.28.0",
             "plotly>=5.17.0",
-            "altair>=5.1.0",
+            "pandas>=2.0.0",
+            "matplotlib>=3.7.0",
+            "seaborn>=0.12.0",
+            "fastapi>=0.104.0",
+            "uvicorn>=0.24.0",
+            "redis>=5.0.0",
+            "prometheus-client>=0.19.0",
         ]
     },
     entry_points={
