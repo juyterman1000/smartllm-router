@@ -65,6 +65,8 @@ setup(
             "isort>=5.12.0",
             "flake8>=6.1.0",
             "mypy>=1.5.0",
+            "bandit>=1.7.0",
+            "safety>=2.3.0",
         ],
         "dashboard": [
             "streamlit>=1.28.0",
